@@ -1,7 +1,7 @@
 <?php
 
 // This endpoint gets the players with the highest score
-// Optional query parameter: count
+// Optional query parameter: count - INT between 1 and 1000 (default 10)
 // TODO: Error handling
 
 require_once '../config.php';
