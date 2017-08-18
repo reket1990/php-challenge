@@ -19,7 +19,7 @@ $db = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 // Get number of players
 $result = $db->query("SELECT COUNT(*) FROM users;");
 $row = mysqli_fetch_row($result);
-$num_players = $row[0];
+$num_players = intval($row[0]);
 
 // Return as JSON
 header('Content-Type: application/json');

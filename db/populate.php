@@ -39,9 +39,10 @@ for ($i = 0; $i < 100; $i++) { // 100 chunks of 10,000 is 1,000,000
     // Construct query 10,000 at a time
     for ($j = 1; $j <= 10000; $j++) {
         $user_id = $i * 10000 + $j;
-        $score = rand(5, 100000);
-        $improvement = rand(0, 5);
-        $sql .= "(\"$user_id\", $score, $improvement, ". time() ."), ";
+        $score = rand(10000, 100000);
+        $improvement = rand(0, 10000);
+        $time = rand(time() - 2592000, time()); // any time within last 30 days
+        $sql .= "(\"$user_id\", $score, $improvement, $time), ";
     }
     // Remove trailing comma and add semicolon
     $sql = substr($sql, 0, -2);
