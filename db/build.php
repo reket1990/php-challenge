@@ -34,7 +34,7 @@ $sql = "CREATE TABLE scores (
     user_id VARCHAR(30),
     high_score INT,
     improvement INT,
-    last_played TIME
+    last_played INT
 );";
 $db->query($sql);
 
