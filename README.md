@@ -57,3 +57,31 @@ The encoded signed_request above contains the following data:
 - The code should live somewhere online and able to process requests from the web. 
 - Requests should spend no more than 1 second in processing a data set of 1 million users. 
 - Do not to use anything other than PHP, MySQL, and a web engine such as Apache or Nginx (i.e. no PHP frameworks, no Redis, memcache or other in-memory stores, no 3rd party libraries beyond those included in PHP 5.).
+
+# Endpoints
+
+### /players/ - GET
+
+Gets the total number of players
+
+### /active/ - GET
+
+Gets the number of active players
+
+Optional query parameter: time - INT between 1 and 315360000 [10 years] (default 86400 [1 day])
+
+### /leaderboard/ - GET
+
+Gets the players with the highest scores
+
+Optional query parameter: count - INT between 1 and 1000 (default 10)
+
+### /improved/ - GET
+
+Gets the most improved players for the week
+
+Optional query parameter: count - INT between 1 and 1000 (default 10)
+
+### /game/ - POST
+
+Processes Facebook signed_request variable and adds user and user_score to database.
