@@ -10,8 +10,9 @@ require_once '../config.php';
 // Make sure GET request
 $method = $_SERVER['REQUEST_METHOD'];
 if ($method != 'GET') {
+    header('Content-Type: application/json');
     header("HTTP/1.0 405 Method Not Allowed");
-    echo "405: Method Not Allowed";
+    echo json_encode(array("status" => "error", "code" => 405, "messages" => ["Method Not Allowed - GET Request Only"]));
     exit;
 }
 
@@ -33,7 +34,8 @@ $db = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 $result = $db->query("SELECT * FROM scores WHERE last_played > $time_period;");
 $num_players = mysqli_num_rows($result);
 
-// Return as JSON
+// Generate response
 header('Content-Type: application/json');
-echo json_encode(array('time' => $time, 'num_players' => $num_players));
+$data = array('time' => $time, 'num_players' => $num_players);
+echo json_encode(array("status" => "ok", "code" => 200, "data" => $data));
 exit;

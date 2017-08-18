@@ -9,8 +9,9 @@ require_once '../config.php';
 // Make sure GET request
 $method = $_SERVER['REQUEST_METHOD'];
 if ($method != 'GET') {
+    header('Content-Type: application/json');
     header("HTTP/1.0 405 Method Not Allowed");
-    echo "405: Method Not Allowed";
+    echo json_encode(array("status" => "error", "code" => 405, "messages" => ["Method Not Allowed - GET Request Only"]));
     exit;
 }
 
@@ -44,6 +45,7 @@ $db->query("CREATE INDEX idx_score ON scores(high_score);");
 $db->query("CREATE INDEX idx_time ON scores(last_played);");
 $db->query("CREATE INDEX idx_improvement ON scores(improvement, last_played);");
 
-// Success message
-echo "200: Success";
+// Generate response
+header('Content-Type: application/json');
+echo json_encode(array("status" => "ok", "code" => 200));
 exit;
