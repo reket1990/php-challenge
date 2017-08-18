@@ -2,6 +2,7 @@
 
 // This service is a internal service only (enabled for testing)
 // This endpoint deletes and rebuilds the database required
+// TODO: Error handling
 
 require_once '../config.php';
 
@@ -44,6 +45,5 @@ $db->query("CREATE INDEX idx_time ON scores(last_played);");
 $db->query("CREATE INDEX idx_improvement ON scores(improvement, last_played);");
 
 // Success message
-// TODO: Error handling
 echo "200: Success";
 exit;
