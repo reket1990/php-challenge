@@ -28,7 +28,8 @@ $db->query("DROP TABLE IF EXISTS `scores`;");
 $sql = "CREATE TABLE users (
     user_id VARCHAR(30),
     country VARCHAR(10),
-    locale VARCHAR(10)
+    locale VARCHAR(10),
+    PRIMARY KEY (user_id)
 );";
 $db->query($sql);
 
@@ -36,7 +37,8 @@ $sql = "CREATE TABLE scores (
     user_id VARCHAR(30),
     high_score INT,
     improvement INT,
-    last_played INT
+    last_played INT,
+    PRIMARY KEY (user_id)
 );";
 $db->query($sql);
 
